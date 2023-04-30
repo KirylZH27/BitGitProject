@@ -38,6 +38,7 @@ class RepositoriesListViewController: UIViewController {
         setupTableView()
         getData()
         searchBar.delegate = self
+        tableView.keyboardDismissMode = .onDrag
     }
     
     private func setupTableView(){
@@ -92,7 +93,6 @@ class RepositoriesListViewController: UIViewController {
         tableView.reloadData()
     }
     
-    
     @IBAction func alphabetSortedButtonWasPressed(_ sender: Any) {
         switch currentAlphabetSortedType {
             case .alphabet:
@@ -116,7 +116,13 @@ extension RepositoriesListViewController {
 }
 
 extension RepositoriesListViewController: UITableViewDelegate {
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let repositore = repositories[indexPath.row]
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let repositoreVC = storyboard.instantiateViewController(withIdentifier: "PersonDescriptionViewController") as! PersonDescriptionViewController
+        repositoreVC.repositore = repositore
+        navigationController?.pushViewController(repositoreVC, animated: true)
+    }
 }
 
 extension RepositoriesListViewController: UITableViewDataSource {

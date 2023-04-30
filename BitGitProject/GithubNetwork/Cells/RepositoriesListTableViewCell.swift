@@ -1,8 +1,8 @@
 //
-//  GithubTableViewCell.swift
+//  RepositoriesListTableViewCell.swift
 //  BitGitProject
 //
-//  Created by Кирилл Жогальский on 26.04.23.
+//  Created by Кирилл Жогальский on 30.04.23.
 //
 
 import UIKit
