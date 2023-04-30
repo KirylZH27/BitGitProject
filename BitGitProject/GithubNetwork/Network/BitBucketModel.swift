@@ -74,3 +74,18 @@ class BitBucketAvatar: Mappable {
         href <- map["href"]
     }
 }
+
+extension BitBucketModel {
+    func convertToRepositoriesModels() -> [RepositoriesModel] {
+        var repositoriesModels: [RepositoriesModel] = []
+        for bitBucketValue in values {
+            let name = bitBucketValue.name
+            let description = bitBucketValue.description
+            let imageURLString = bitBucketValue.owner?.links?.avatar?.href
+            
+            let repositoriesModel = RepositoriesModel(name: name, description: description, imageURLString: imageURLString ?? "", repositoriesName: "BitBucket")
+            repositoriesModels.append(repositoriesModel)
+        }
+        return repositoriesModels
+    }
+}

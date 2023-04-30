@@ -35,6 +35,11 @@ class GitHubOwner: Mappable {
     func mapping(map: ObjectMapper.Map) {
         avatarUrl <- map["avatar_url"]
     }
-    
-    
+}
+
+extension GitHubModel {
+    func convertToRepositoriesModel() -> RepositoriesModel {
+        let repositoresModel = RepositoriesModel(name: name, description: description, imageURLString: owner?.avatarUrl ?? "", repositoriesName: "GitHub")
+        return repositoresModel
+    }
 }
