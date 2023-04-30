@@ -41,6 +41,7 @@ class BitBucketValues: Mappable {
 class BitBucketOwner: Mappable {
     
     var links: BitBucketOwnerLinks?
+    var displayName: String = ""
     
     required init?(map: ObjectMapper.Map) {
         mapping(map: map)
@@ -48,6 +49,7 @@ class BitBucketOwner: Mappable {
     
     func mapping(map: ObjectMapper.Map) {
         links <- map["links"]
+        displayName <- map["display_name"]
     }
 }
 
@@ -83,8 +85,8 @@ extension BitBucketModel {
             let name = bitBucketValue.name
             let description = bitBucketValue.description
             let imageURLString = bitBucketValue.owner?.links?.avatar?.href
-            
-            let repositoriesModel = RepositoriesModel(name: name, description: description, imageURLString: imageURLString ?? "", repositoriesName: "BitBucket")
+            let userName = bitBucketValue.owner?.displayName
+            let repositoriesModel = RepositoriesModel(name: name, description: description, imageURLString: imageURLString ?? "", repositoriesName: "BitBucket", userName: userName ?? "NoName")
             repositoriesModels.append(repositoriesModel)
         }
         return repositoriesModels

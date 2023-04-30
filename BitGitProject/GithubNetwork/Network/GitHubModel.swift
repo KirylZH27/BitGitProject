@@ -27,19 +27,21 @@ class GitHubModel: Mappable {
 }
 class GitHubOwner: Mappable {
     var avatarUrl: String = ""
-    
+    var login: String = ""
+  
     required init?(map: ObjectMapper.Map) {
         mapping(map: map)
     }
     
     func mapping(map: ObjectMapper.Map) {
         avatarUrl <- map["avatar_url"]
+        login <- map["login"]
     }
 }
 
 extension GitHubModel {
     func convertToRepositoriesModel() -> RepositoriesModel {
-        let repositoresModel = RepositoriesModel(name: name, description: description, imageURLString: owner?.avatarUrl ?? "", repositoriesName: "GitHub")
+        let repositoresModel = RepositoriesModel(name: name, description: description, imageURLString: owner?.avatarUrl ?? "", repositoriesName: "GitHub", userName: owner?.login ?? "NoName")
         return repositoresModel
     }
 }

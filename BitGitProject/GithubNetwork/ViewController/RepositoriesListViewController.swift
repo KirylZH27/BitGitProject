@@ -20,6 +20,7 @@ enum AlphabetSortedType {
 class RepositoriesListViewController: UIViewController {
     
     @IBOutlet var tableView: UITableView!
+    @IBOutlet var searchBar: UISearchBar!
     
     private var repositories = [RepositoriesModel]()
     private var defaultRepositories = [RepositoriesModel]()
@@ -36,6 +37,7 @@ class RepositoriesListViewController: UIViewController {
         super.viewDidLoad()
         setupTableView()
         getData()
+        searchBar.delegate = self
     }
     
     private func setupTableView(){
@@ -68,6 +70,15 @@ class RepositoriesListViewController: UIViewController {
         present(alertController, animated: false)
     }
     
+    private func filteredByUserName(serchedText: String) -> [RepositoriesModel]{
+        repositories.filter { $0.userName.lowercased().contains(serchedText.lowercased())}
+    }
+    private func filteredByRepositoriesName(serchedText: String) -> [RepositoriesModel]{
+        repositories.filter { $0.name.lowercased().contains(serchedText.lowercased())}
+    }
+    private func filterByRepositoriesTypeName(serchedText: String) -> [RepositoriesModel]{
+        repositories.filter { $0.repositoriesName.lowercased().contains(serchedText.lowercased())}
+    }
     
     @IBAction func sortedTypesRepositoriesButtonWasPressed(_ sender: Any) {
         switch currentRepositoriesSortedType {
@@ -120,5 +131,26 @@ extension RepositoriesListViewController: UITableViewDataSource {
         repositoriesCell.setupCell(with: repositories[indexPath.row])
         
         return repositoriesCell
+    }
+}
+
+extension RepositoriesListViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        repositories = defaultRepositories
+        guard !searchText.isEmpty else {
+            tableView.reloadData()
+            return }
+        var filtertedRepositories: Set<RepositoriesModel> = []
+        
+        let userNameFiltered = filteredByUserName(serchedText: searchText)
+        let repositoriesNameFiltered = filteredByRepositoriesName(serchedText: searchText)
+        let repositoriesTypeNameFiltered = filterByRepositoriesTypeName(serchedText: searchText)
+        
+        userNameFiltered.forEach{filtertedRepositories.insert($0)}
+        repositoriesNameFiltered.forEach{filtertedRepositories.insert($0)}
+        repositoriesTypeNameFiltered.forEach{filtertedRepositories.insert($0)}
+        
+        repositories = Array(filtertedRepositories)
+        tableView.reloadData()
     }
 }
