@@ -11,7 +11,7 @@ class RepositoriesListViewController: UIViewController {
     
     @IBOutlet var tableView: UITableView!
     
-    var info = [GitHubModel]()
+    private var repositories = [RepositoriesModel]()
     
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
@@ -22,7 +22,7 @@ class RepositoriesListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
-        getData {}
+        getData()
     }
     
     private func setupTableView(){
@@ -34,29 +34,30 @@ class RepositoriesListViewController: UIViewController {
         tableView.register(nib, forCellReuseIdentifier: RepositoriesListTableViewCell.id)
     }
     
-    private func getData(completion: @escaping () -> Void){
-        /*     Provider().getGitHubModels { result in
-         self.info = result
-         self.tableView.reloadData()
-         completion()
-         } failure: {
-         completion()
-         }
-         
-         */
-        Provider().getBitBucketModels { result in
-            print(result)
-        } failure: {
-            
+    private func getData(){
+        Provider().getRepositories { [weak self] result in
+            switch result {
+                case .success(let repositories):
+                    self?.repositories = repositories
+                    self?.tableView.reloadData()
+                    self?.refreshControl.endRefreshing()
+                case .failure(let error):
+                    self?.showErrorAlert(with: error.localizedDescription)
+            }
         }
+    }
+    private func showErrorAlert(with error: String){
+        let title = "Error"
+        let message = error
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "Ok", style: .cancel))
+        present(alertController, animated: false)
     }
 }
 
 extension RepositoriesListViewController {
     @objc private func refreshData() {
-        getData { [weak self] in
-            self?.refreshControl.endRefreshing()
-        }
+        getData()
     }
 }
 
@@ -66,15 +67,15 @@ extension RepositoriesListViewController: UITableViewDelegate {
 
 extension RepositoriesListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return info.count
+        return repositories.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: RepositoriesListTableViewCell.id, for: indexPath)
         
-        guard let githubCell = cell as? RepositoriesListTableViewCell else { return cell }
-        githubCell.set(info: info[indexPath.row])
+        guard let repositoriesCell = cell as? RepositoriesListTableViewCell else { return cell }
+        repositoriesCell.setupCell(with: repositories[indexPath.row])
         
-        return githubCell
+        return repositoriesCell
     }
 }

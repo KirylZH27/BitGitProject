@@ -34,6 +34,7 @@ class BitBucketValues: Mappable {
     func mapping(map: ObjectMapper.Map) {
         name <- map["name"]
         description <- map["description"]
+        owner <- map["owner"]
     }
 }
 

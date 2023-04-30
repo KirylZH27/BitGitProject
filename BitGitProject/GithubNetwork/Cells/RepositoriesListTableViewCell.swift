@@ -14,18 +14,25 @@ class RepositoriesListTableViewCell: UITableViewCell {
     @IBOutlet var hederLabel: UILabel!
     @IBOutlet var imagePerson: UIImageView!
     @IBOutlet var descriptionLabel: UILabel!
+    @IBOutlet var typeRepositoriesLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
     }
 
-    func set(info: GitHubModel) {
-        self.hederLabel.text = "\(info.name)"
-        self.descriptionLabel.text = "\(info.description)"
-        setImagePerson(imageUrlString: info.owner?.avatarUrl)
+    override func prepareForReuse() {
+        //MARK: - Сделать Placholder
+        imagePerson.image = UIImage(systemName: "person")
     }
-    
+    func setupCell(with model: RepositoriesModel) {
+        
+        self.hederLabel.text = model.name
+        self.descriptionLabel.text = model.description
+        self.typeRepositoriesLabel.text = model.repositoriesName
+        setImagePerson(imageUrlString: model.imageURLString)
+    }
+                       
     private func setImagePerson(imageUrlString: String?) {
         guard let imageUrlString else { return }
         guard let imageUrl = URL(string: imageUrlString) else { return }

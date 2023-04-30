@@ -57,6 +57,7 @@
                 <outlet property="descriptionLabel" destination="cSm-Kw-gW1" id="VtL-4o-fFb"/>
                 <outlet property="hederLabel" destination="ypT-ub-bf6" id="pgd-am-8Z1"/>
                 <outlet property="imagePerson" destination="fvl-Fh-u7q" id="bWX-kA-wk1"/>
+                <outlet property="typeRepositoriesLabel" destination="wtJ-0z-sJT" id="0Tb-4p-P6B"/>
             </connections>
             <point key="canvasLocation" x="156.4885496183206" y="39.436619718309863"/>
         </tableViewCell>
