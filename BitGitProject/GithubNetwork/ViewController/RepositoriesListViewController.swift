@@ -7,11 +7,24 @@
 
 import UIKit
 
+enum RepositoriesSortedType {
+    case GitHub
+    case BitBucket
+}
+enum AlphabetSortedType {
+    case alphabet
+    case invertAlphabet
+    case initial
+}
+
 class RepositoriesListViewController: UIViewController {
     
     @IBOutlet var tableView: UITableView!
     
     private var repositories = [RepositoriesModel]()
+    private var defaultRepositories = [RepositoriesModel]()
+    private var currentRepositoriesSortedType: RepositoriesSortedType = .GitHub
+    private var currentAlphabetSortedType: AlphabetSortedType = .initial
     
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
@@ -39,6 +52,7 @@ class RepositoriesListViewController: UIViewController {
             switch result {
                 case .success(let repositories):
                     self?.repositories = repositories
+                    self?.defaultRepositories = repositories
                     self?.tableView.reloadData()
                     self?.refreshControl.endRefreshing()
                 case .failure(let error):
@@ -52,6 +66,35 @@ class RepositoriesListViewController: UIViewController {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alertController.addAction(UIAlertAction(title: "Ok", style: .cancel))
         present(alertController, animated: false)
+    }
+    
+    
+    @IBAction func sortedTypesRepositoriesButtonWasPressed(_ sender: Any) {
+        switch currentRepositoriesSortedType {
+            case .GitHub:
+                repositories.sort { $0.repositoriesName < $1.repositoriesName }
+                currentRepositoriesSortedType = .BitBucket
+            case .BitBucket:
+                repositories.sort { $0.repositoriesName > $1.repositoriesName }
+                currentRepositoriesSortedType = .GitHub
+        }
+        tableView.reloadData()
+    }
+    
+    
+    @IBAction func alphabetSortedButtonWasPressed(_ sender: Any) {
+        switch currentAlphabetSortedType {
+            case .alphabet:
+                repositories.sort{ $0.name > $1.name}
+                currentAlphabetSortedType = .invertAlphabet
+            case .invertAlphabet:
+                repositories = defaultRepositories
+                currentAlphabetSortedType = .initial
+            case .initial:
+                repositories.sort{ $0.name < $1.name}
+                currentAlphabetSortedType = .alphabet
+        }
+        tableView.reloadData()
     }
 }
 
