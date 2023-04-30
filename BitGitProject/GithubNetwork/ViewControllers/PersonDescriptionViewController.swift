@@ -19,7 +19,6 @@ class PersonDescriptionViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         headerLabel.text = repositore?.name
         descriptionLabel.text = repositore?.description
         typeRepositoriesLabel.text = repositore?.repositoriesName
@@ -27,6 +26,7 @@ class PersonDescriptionViewController: UIViewController {
        
         setImagePerson(imageUrlString: repositore?.imageURLString)
     }
+    
     private func setImagePerson(imageUrlString: String?) {
         guard let imageUrlString else { return }
         guard let imageUrl = URL(string: imageUrlString) else { return }

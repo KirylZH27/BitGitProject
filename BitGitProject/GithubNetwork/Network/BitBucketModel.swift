@@ -19,9 +19,8 @@ class BitBucketModel: Mappable {
     func mapping(map: ObjectMapper.Map) {
         values <- map["values"]
     }
-    
-    
 }
+
 class BitBucketValues: Mappable {
     var name = ""
     var description = ""
@@ -63,7 +62,6 @@ class BitBucketOwnerLinks: Mappable {
     func mapping(map: ObjectMapper.Map) {
         avatar <- map["avatar"]
     }
-    
 }
 
 class BitBucketAvatar: Mappable {

@@ -20,13 +20,12 @@ class RepositoriesListTableViewCell: UITableViewCell {
         super.awakeFromNib()
         
     }
-
+    
     override func prepareForReuse() {
-        //MARK: - Сделать Placholder
         imagePerson.image = UIImage(systemName: "person")
     }
+    
     func setupCell(with model: RepositoriesModel) {
-        
         self.hederLabel.text = model.name
         self.descriptionLabel.text = model.description
         self.typeRepositoriesLabel.text = model.repositoriesName

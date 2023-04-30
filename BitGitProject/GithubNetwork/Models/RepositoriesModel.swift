@@ -11,7 +11,6 @@ final class RepositoriesModel: Hashable {
     static func == (lhs: RepositoriesModel, rhs: RepositoriesModel) -> Bool {
         let isEquatable = lhs.name == rhs.name && lhs.description == rhs.description && lhs.imageURLString == rhs.imageURLString && lhs.repositoriesName == rhs.repositoriesName && lhs.userName == rhs.userName
         return isEquatable
-        
     }
     
     var name: String

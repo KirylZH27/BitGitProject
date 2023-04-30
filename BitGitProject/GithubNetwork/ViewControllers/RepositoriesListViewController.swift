@@ -11,6 +11,7 @@ enum RepositoriesSortedType {
     case GitHub
     case BitBucket
 }
+
 enum AlphabetSortedType {
     case alphabet
     case invertAlphabet
@@ -63,6 +64,7 @@ class RepositoriesListViewController: UIViewController {
             }
         }
     }
+    
     private func showErrorAlert(with error: String){
         let title = "Error"
         let message = error

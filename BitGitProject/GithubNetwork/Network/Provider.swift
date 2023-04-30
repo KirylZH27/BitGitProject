@@ -9,8 +9,6 @@ import Foundation
 import Moya
 import Moya_ObjectMapper
 
-
-
 class Provider {
     private let provider = MoyaProvider<API>(plugins: [NetworkLoggerPlugin()])
     
@@ -47,8 +45,8 @@ class Provider {
             }
             completion(.success(repositoriesArray))
         }
-
     }
+    
     private func getGitHubModels(success: (([GitHubModel]) -> Void)?, failure: ((Error)-> Void)?)
     {
         provider.request(.GitHub){ result in
@@ -66,6 +64,7 @@ class Provider {
             }
         }
     }
+    
     private func getBitBucketModels(success: ((BitBucketModel) -> Void)?, failure: ((Error)-> Void)?)
     {
         provider.request(.BitBucket){ result in
@@ -81,9 +80,6 @@ class Provider {
                 case .failure(let error):
                     failure?(error)
             }
-            
         }
     }
-
-    
 }
