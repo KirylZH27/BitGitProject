@@ -35,12 +35,19 @@ class RepositoriesListViewController: UIViewController {
     }
     
     private func getData(completion: @escaping () -> Void){
-        Provider().getInfo { result in
-            self.info = result
-            self.tableView.reloadData()
-            completion()
+        /*     Provider().getGitHubModels { result in
+         self.info = result
+         self.tableView.reloadData()
+         completion()
+         } failure: {
+         completion()
+         }
+         
+         */
+        Provider().getBitBucketModels { result in
+            print(result)
         } failure: {
-            completion()
+            
         }
     }
 }
