@@ -8,7 +8,7 @@
 import Foundation
 import ObjectMapper
 
-class GitHubModel: Mappable {
+final class GitHubModel: Mappable {
     var name: String = ""
     var description: String = ""
     var owner: GitHubOwner?
@@ -25,7 +25,7 @@ class GitHubModel: Mappable {
     
     
 }
-class GitHubOwner: Mappable {
+final class GitHubOwner: Mappable {
     var avatarUrl: String = ""
     var login: String = ""
   

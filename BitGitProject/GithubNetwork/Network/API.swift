@@ -52,15 +52,11 @@ extension API: TargetType {
     
     var parameters: [String: Any]? {
         //MARK: - Можно прокидывать параметры
-        var params = [String: Any]()
         
         switch self{
-            case .GitHub:
-                return nil
-            case .BitBucket:
+            case .GitHub, .BitBucket:
                 return nil
         }
-        return params
     }
     
     var encoding: ParameterEncoding {
@@ -69,5 +65,4 @@ extension API: TargetType {
                 return URLEncoding.queryString
         }
     }
-    
 }

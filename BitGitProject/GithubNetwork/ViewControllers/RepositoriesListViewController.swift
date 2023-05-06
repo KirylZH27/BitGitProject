@@ -18,7 +18,7 @@ enum AlphabetSortedType {
     case initial
 }
 
-class RepositoriesListViewController: UIViewController {
+final class RepositoriesListViewController: UIViewController {
     
     @IBOutlet var tableView: UITableView!
     @IBOutlet var searchBar: UISearchBar!

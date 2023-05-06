@@ -7,7 +7,7 @@
 
 import UIKit
 
-class PersonDescriptionViewController: UIViewController {
+final class PersonDescriptionViewController: UIViewController {
 
     @IBOutlet var headerLabel: UILabel!
     @IBOutlet var descriptionLabel: UILabel!

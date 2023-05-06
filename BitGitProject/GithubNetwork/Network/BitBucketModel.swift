@@ -8,7 +8,7 @@
 import Foundation
 import ObjectMapper
 
-class BitBucketModel: Mappable {
+final class BitBucketModel: Mappable {
 
     var values: [BitBucketValues] = []
     
@@ -21,7 +21,7 @@ class BitBucketModel: Mappable {
     }
 }
 
-class BitBucketValues: Mappable {
+final class BitBucketValues: Mappable {
     var name = ""
     var description = ""
     var owner: BitBucketOwner?
@@ -37,8 +37,7 @@ class BitBucketValues: Mappable {
     }
 }
 
-class BitBucketOwner: Mappable {
-    
+final class BitBucketOwner: Mappable {
     var links: BitBucketOwnerLinks?
     var displayName: String = ""
     
@@ -52,7 +51,7 @@ class BitBucketOwner: Mappable {
     }
 }
 
-class BitBucketOwnerLinks: Mappable {
+final class BitBucketOwnerLinks: Mappable {
     var avatar: BitBucketAvatar?
     
     required init?(map: ObjectMapper.Map) {
@@ -64,7 +63,7 @@ class BitBucketOwnerLinks: Mappable {
     }
 }
 
-class BitBucketAvatar: Mappable {
+final class BitBucketAvatar: Mappable {
     var href: String = ""
     
     required init?(map: ObjectMapper.Map) {

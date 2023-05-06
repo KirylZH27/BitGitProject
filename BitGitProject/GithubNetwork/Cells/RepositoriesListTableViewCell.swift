@@ -7,7 +7,7 @@
 
 import UIKit
 
-class RepositoriesListTableViewCell: UITableViewCell {
+final class RepositoriesListTableViewCell: UITableViewCell {
 
     static let id = String(describing: RepositoriesListTableViewCell.self)
     
