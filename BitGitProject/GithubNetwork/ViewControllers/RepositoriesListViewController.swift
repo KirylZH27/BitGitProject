@@ -20,6 +20,8 @@ enum AlphabetSortedType {
 
 final class RepositoriesListViewController: UIViewController {
     
+    let repositoriesManager: RepositoriesManager
+    
     @IBOutlet var tableView: UITableView!
     @IBOutlet var searchBar: UISearchBar!
     
@@ -33,6 +35,18 @@ final class RepositoriesListViewController: UIViewController {
         refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
         return refreshControl
     }()
+    
+    init(repositoriesManager: RepositoriesManager) {
+        self.repositoriesManager = repositoriesManager
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        let moyaGetter = MoyaLoaderProvider()
+        let repositoriesManager = RepositoriesManager(moyaGetter: moyaGetter)
+        self.repositoriesManager = repositoriesManager
+        super.init(coder: coder)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,7 +66,7 @@ final class RepositoriesListViewController: UIViewController {
     }
     
     private func getData(){
-        Provider().getRepositories { [weak self] result in
+        repositoriesManager.getRepositories { [weak self] result in
             switch result {
                 case .success(let repositories):
                     self?.repositories = repositories

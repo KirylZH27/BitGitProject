@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A19E2D02A06700900B83204 /* RepositoriesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A19E2CF2A06700900B83204 /* RepositoriesManager.swift */; };
 		0ADE7F9B29F95707000EE6B6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADE7F9A29F95707000EE6B6 /* AppDelegate.swift */; };
 		0ADE7F9D29F95707000EE6B6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADE7F9C29F95707000EE6B6 /* SceneDelegate.swift */; };
 		0ADE7FA229F95707000EE6B6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0ADE7FA029F95707000EE6B6 /* Main.storyboard */; };
@@ -15,7 +16,7 @@
 		0ADE7FB229F97388000EE6B6 /* RepositoriesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADE7FB129F97388000EE6B6 /* RepositoriesListViewController.swift */; };
 		0ADE7FBA29F97C34000EE6B6 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADE7FB929F97C34000EE6B6 /* API.swift */; };
 		0ADE7FBC29F97C41000EE6B6 /* GitHubModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADE7FBB29F97C41000EE6B6 /* GitHubModel.swift */; };
-		0ADE7FC029F97C5A000EE6B6 /* Provider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADE7FBF29F97C5A000EE6B6 /* Provider.swift */; };
+		0ADE7FC029F97C5A000EE6B6 /* MoyaLoaderProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADE7FBF29F97C5A000EE6B6 /* MoyaLoaderProvider.swift */; };
 		0AFAD3B129FE895F0051106C /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFAD3B029FE895E0051106C /* UIImageView+Extension.swift */; };
 		0AFAD3B329FE90950051106C /* BitBucketModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFAD3B229FE90950051106C /* BitBucketModel.swift */; };
 		0AFAD3B629FE94960051106C /* RepositoriesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFAD3B529FE94960051106C /* RepositoriesModel.swift */; };
@@ -26,6 +27,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0A19E2CF2A06700900B83204 /* RepositoriesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoriesManager.swift; sourceTree = "<group>"; };
 		0ADE7F9729F95707000EE6B6 /* BitGitProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BitGitProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0ADE7F9A29F95707000EE6B6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0ADE7F9C29F95707000EE6B6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -36,7 +38,7 @@
 		0ADE7FB129F97388000EE6B6 /* RepositoriesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoriesListViewController.swift; sourceTree = "<group>"; };
 		0ADE7FB929F97C34000EE6B6 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		0ADE7FBB29F97C41000EE6B6 /* GitHubModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubModel.swift; sourceTree = "<group>"; };
-		0ADE7FBF29F97C5A000EE6B6 /* Provider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Provider.swift; sourceTree = "<group>"; };
+		0ADE7FBF29F97C5A000EE6B6 /* MoyaLoaderProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoyaLoaderProvider.swift; sourceTree = "<group>"; };
 		0AFAD3B029FE895E0051106C /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
 		0AFAD3B229FE90950051106C /* BitBucketModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BitBucketModel.swift; sourceTree = "<group>"; };
 		0AFAD3B529FE94960051106C /* RepositoriesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoriesModel.swift; sourceTree = "<group>"; };
@@ -128,7 +130,8 @@
 				0ADE7FB929F97C34000EE6B6 /* API.swift */,
 				0ADE7FBB29F97C41000EE6B6 /* GitHubModel.swift */,
 				0AFAD3B229FE90950051106C /* BitBucketModel.swift */,
-				0ADE7FBF29F97C5A000EE6B6 /* Provider.swift */,
+				0ADE7FBF29F97C5A000EE6B6 /* MoyaLoaderProvider.swift */,
+				0A19E2CF2A06700900B83204 /* RepositoriesManager.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -293,9 +296,10 @@
 				0ADE7FBC29F97C41000EE6B6 /* GitHubModel.swift in Sources */,
 				0ADE7F9B29F95707000EE6B6 /* AppDelegate.swift in Sources */,
 				0AFAD3B129FE895F0051106C /* UIImageView+Extension.swift in Sources */,
+				0A19E2D02A06700900B83204 /* RepositoriesManager.swift in Sources */,
 				0AFAD3B329FE90950051106C /* BitBucketModel.swift in Sources */,
 				0ADE7F9D29F95707000EE6B6 /* SceneDelegate.swift in Sources */,
-				0ADE7FC029F97C5A000EE6B6 /* Provider.swift in Sources */,
+				0ADE7FC029F97C5A000EE6B6 /* MoyaLoaderProvider.swift in Sources */,
 				0ADE7FB229F97388000EE6B6 /* RepositoriesListViewController.swift in Sources */,
 				0AFAD3BA29FEC4AF0051106C /* RepositoriesListTableViewCell.swift in Sources */,
 				0ADE7FBA29F97C34000EE6B6 /* API.swift in Sources */,

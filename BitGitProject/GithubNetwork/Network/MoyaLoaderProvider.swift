@@ -9,7 +9,7 @@ import Foundation
 import Moya
 import Moya_ObjectMapper
 
-final class Provider {
+final class MoyaLoaderProvider: RepositoriesGetter {
     private let provider = MoyaProvider<API>(plugins: [NetworkLoggerPlugin()])
     
     func getRepositories(completion: @escaping ( Result<[RepositoriesModel], Error>) -> Void) {
