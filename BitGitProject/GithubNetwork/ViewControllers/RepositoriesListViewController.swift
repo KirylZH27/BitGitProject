@@ -61,8 +61,8 @@ final class RepositoriesListViewController: UIViewController {
         tableView.dataSource = self
         tableView.refreshControl = refreshControl
         
-        let nib = UINib(nibName: RepositoriesListTableViewCell.id, bundle: nil)
-        tableView.register(nib, forCellReuseIdentifier: RepositoriesListTableViewCell.id)
+        let nib = UINib(nibName: RepositoriesListTableViewCell.identifier(), bundle: nil)
+        tableView.register(nib, forCellReuseIdentifier: RepositoriesListTableViewCell.identifier())
     }
     
     private func getData(){
@@ -147,7 +147,7 @@ extension RepositoriesListViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: RepositoriesListTableViewCell.id, for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: RepositoriesListTableViewCell.identifier(), for: indexPath)
         
         guard let repositoriesCell = cell as? RepositoriesListTableViewCell else { return cell }
         repositoriesCell.setupCell(with: repositories[indexPath.row])

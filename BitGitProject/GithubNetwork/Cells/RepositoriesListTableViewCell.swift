@@ -9,7 +9,9 @@ import UIKit
 
 final class RepositoriesListTableViewCell: UITableViewCell {
 
-    static let id = String(describing: RepositoriesListTableViewCell.self)
+    static func identifier() -> String {
+        return String(describing: self)
+    }
     
     @IBOutlet var hederLabel: UILabel!
     @IBOutlet var imagePerson: UIImageView!
