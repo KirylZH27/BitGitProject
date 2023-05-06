@@ -8,7 +8,7 @@
 import Foundation
 
 protocol RepositoriesGetter {
-    func getRepositories(completion: @escaping ( Result<[RepositoriesModel], Error>) -> Void)
+    func getRepositories(completion: @escaping ( Result<[RepositoriesModel], MoyaLoaderProvider.Error>) -> Void)
 }
 final class RepositoriesManager: RepositoriesGetter {
     let moyaGetter: RepositoriesGetter
@@ -17,7 +17,7 @@ final class RepositoriesManager: RepositoriesGetter {
         self.moyaGetter = moyaGetter
     }
     
-    func getRepositories(completion: @escaping (Result<[RepositoriesModel], Error>) -> Void) {
+    func getRepositories(completion: @escaping (Result<[RepositoriesModel], MoyaLoaderProvider.Error>) -> Void) {
         moyaGetter.getRepositories(completion: completion)
     }
 }
