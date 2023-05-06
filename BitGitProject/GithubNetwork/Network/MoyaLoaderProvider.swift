@@ -108,7 +108,7 @@ final class MoyaLoaderProvider: RepositoriesGetter {
     }
     private func createCustomError(error: MoyaError) -> MoyaLoaderProvider.Error {
         switch error.errorCode {
-            case 500:
+            case 500...510:
                 return .serverNotAvalable
             case 401:
                 return .noInternetConnection

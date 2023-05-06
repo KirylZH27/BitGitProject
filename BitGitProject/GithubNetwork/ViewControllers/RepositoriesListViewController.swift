@@ -88,13 +88,16 @@ final class RepositoriesListViewController: UIViewController {
     }
     
     private func filteredByUserName(serchedText: String) -> [RepositoriesModel]{
-        repositories.filter { $0.userName.lowercased().contains(serchedText.lowercased())}
+        repositories.filter { $0.userName.lowercased()
+            .contains(serchedText.lowercased())}
     }
     private func filteredByRepositoriesName(serchedText: String) -> [RepositoriesModel]{
-        repositories.filter { $0.name.lowercased().contains(serchedText.lowercased())}
+        repositories.filter { $0.name.lowercased()
+            .contains(serchedText.lowercased())}
     }
     private func filterByRepositoriesTypeName(serchedText: String) -> [RepositoriesModel]{
-        repositories.filter { $0.repositoriesName.lowercased().contains(serchedText.lowercased())}
+        repositories.filter { $0.repositoriesName.lowercased()
+            .contains(serchedText.lowercased())}
     }
     
     @IBAction func sortedTypesRepositoriesButtonWasPressed(_ sender: Any) {
